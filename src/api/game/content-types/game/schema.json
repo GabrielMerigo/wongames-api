@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "singularName": "game",
+    "pluralName": "games",
+    "displayName": "game",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "pluginOptions": {}
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "short_description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 160,
+      "pluginOptions": {}
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "pluginOptions": {}
+    },
+    "release_date": {
+      "type": "date",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "rating": {
+      "type": "enumeration",
+      "enum": [
+        "Free",
+        "Pegi3",
+        "Pegi7",
+        "Pegi12",
+        "pegi16",
+        "pegi18"
+      ],
+      "required": true,
+      "pluginOptions": {}
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "games"
+    },
+    "developers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::developer.developer",
+      "inversedBy": "games"
+    },
+    "platforms": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::platform.platform",
+      "inversedBy": "games"
+    },
+    "publisher": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::publisher.publisher",
+      "inversedBy": "games"
+    }
+  }
+}
